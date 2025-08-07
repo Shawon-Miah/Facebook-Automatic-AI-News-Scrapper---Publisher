@@ -14,8 +14,7 @@ The Google Sheet is the "brain" of our system. It holds all the settings, RSS fe
 
 This is your main dashboard. The script reads these settings every time it runs.
 
-<!-- **YOUR ACTION:** Upload your screenshot of this tab to `assets/screenshots/` and replace this line with:
-![Control Panel Sheet](assets/screenshots/controlpanel_setup.png)
+![Control Panel Sheet]([assets/screenshots/controlpanel_setup.png](https://github.com/Shawon-Miah/Facebook-Automatic-AI-News-Scrapper---Publisher/blob/main/assets/screenshots/controlpannelScreenshot%202025-08-07%20232602.png))
 -->
 
 | | A | B |
