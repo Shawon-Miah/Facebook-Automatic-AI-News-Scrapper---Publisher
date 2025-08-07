@@ -14,8 +14,7 @@ The Google Sheet is the "brain" of our system. It holds all the settings, RSS fe
 
 This is your main dashboard. The script reads these settings every time it runs.
 
-![Control Panel Sheet]([assets/screenshots/controlpanel_setup.png](https://github.com/Shawon-Miah/Facebook-Automatic-AI-News-Scrapper---Publisher/blob/main/assets/screenshots/controlpannelScreenshot%202025-08-07%20232602.png))
--->
+![Control Panel Sheet Setup](https://github.com/Shawon-Miah/Facebook-Automatic-AI-News-Scrapper---Publisher/blob/main/assets/screenshots/controlpannelScreenshot%202025-08-07%20232602.png?raw=true)
 
 | | A | B |
 | :--- | :--- | :--- |
@@ -24,7 +23,7 @@ This is your main dashboard. The script reads these settings every time it runs.
 | **3**| Max_Posts_Per_Day | 20 |
 | **4**| Last_Post_Timestamp | *(leave blank)* |
 | **5**| Posts_Today_Count | 0 |
-| **6**| Discord_Webhook_URL | *(we will fill this in next)* |
+| **6**| Discord_Webhook_URL | *(paste your Discord webhook here)* |
 | **7**| Facebook_Page_ID | *(paste your Facebook Page ID here)*|
 | **8**| Make_Webhook_URL | *(we will get this from Make.com)*|
 | **9**| Gemini_API_Key | *(paste your Google AI key here)* |
@@ -33,9 +32,7 @@ This is your main dashboard. The script reads these settings every time it runs.
 
 This is your list of news sources. The script will only read from feeds where "Active" is set to `Y`.
 
-<!-- **YOUR ACTION:** Upload a screenshot of this tab and replace this line with:
-![RSS Feeds Sheet](assets/screenshots/rss_feeds_setup.png)
--->
+![RSS Feeds Sheet Setup](https://github.com/Shawon-Miah/Facebook-Automatic-AI-News-Scrapper---Publisher/blob/main/assets/screenshots/rssfeedScreenshot%202025-08-07%20232647.png?raw=true)
 
 | | A | B |
 | :--- | :--- | :--- |
@@ -47,6 +44,8 @@ This is your list of news sources. The script will only read from feeds where "A
 
 This is the system's "memory." The script writes a new row here after every successful post to prevent duplicates. You only need to set up the headers.
 
+![Posted News Log](https://github.com/Shawon-Miah/Facebook-Automatic-AI-News-Scrapper---Publisher/blob/main/assets/screenshots/postednewsScreenshot%202025-08-07%20232722.png?raw=true)
+
 | | A | B | C | D | E |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **1**| **Post_Timestamp** | **Article_Title** | **Article_URL**| **Image_URL** | **Post_ID_Status**|
@@ -54,6 +53,8 @@ This is the system's "memory." The script writes a new row here after every succ
 ### 4. `Error_Log` Tab
 
 If anything goes wrong, the script will log the details here for debugging. You only need to set up the headers.
+
+![Error Log](https://github.com/Shawon-Miah/Facebook-Automatic-AI-News-Scrapper---Publisher/blob/main/assets/screenshots/ErrorlogScreenshot%202025-08-07%20232738.png?raw=true)
 
 | | A | B | C | D |
 | :--- | :--- | :--- | :--- | :--- |
@@ -74,9 +75,7 @@ Make.com's job is simple: catch the data from our script and post it to Facebook
 
 Your final scenario should be a simple two-step flow.
 
-<!-- **YOUR ACTION:** Upload a screenshot of the two-step scenario and replace this line with:
-![Make.com Scenario](assets/screenshots/make_scenario_overview.png)
--->
+![Make.com Scenario Overview](https://github.com/Shawon-Miah/Facebook-Automatic-AI-News-Scrapper---Publisher/blob/main/assets/screenshots/make1stScreenshot%202025-08-07%20232941.png?raw=true)
 
 ---
 
@@ -111,11 +110,9 @@ This final phase brings the system to life.
         *   The main `Message` field at the bottom should be left **empty**.
     *   Click **Save**.
 
-<!-- **YOUR ACTION:** Upload your most important screenshot showing the correct mapping and replace this line with:
-![Facebook Module Mapping](assets/screenshots/make_facebook_mapping.png)
--->
+![Facebook Module Mapping](https://github.com/Shawon-Miah/Facebook-Automatic-AI-News-Scrapper---Publisher/blob/main/assets/screenshots/make2ndScreenshot%202025-08-07%20232954.png?raw=true)
 
-4.  **Activate the Scenario:** At the bottom-left of the Make.com editor, **toggle the scheduling switch to ON.** Your publisher is now live and listening.
+4.  **Activate the Scenario:** At the bottom-left of the Make.com editor, **toggle the scheduling switch to ON.** Your publisher is now live and permanently listening.
 
 5.  **Set the Automatic Trigger:**
     *   In the Apps Script editor, go to the **Triggers** tab (the clock icon).
@@ -123,10 +120,8 @@ This final phase brings the system to life.
     *   Set it up to run the **`runAutomation`** function on a **`Time-driven`** timer (e.g., `Minutes timer` every `30 minutes`).
     *   Click **Save**.
 
-<!-- **YOUR ACTION:** Upload a screenshot of your trigger setup and replace this line with:
-![Apps Script Trigger](assets/screenshots/apps_script_trigger.png)
--->
+![Apps Script Trigger Setup](https://github.com/Shawon-Miah/Facebook-Automatic-AI-News-Scrapper---Publisher/blob/main/assets/screenshots/triggerScreenshot%202025-08-07%20232837.png?raw=true)
 
 ### Congratulations! 🎉
 
-Your automated news publisher is now fully configured and live. You can monitor its activity via the Discord notifications and the Apps Script execution logs.
+Your automated news publisher is now fully configured and live. You can monitor its activity via Discord notifications and the Apps Script execution logs.
