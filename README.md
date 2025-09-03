@@ -1,82 +1,103 @@
-# Facebook Automatic AI News Scrapper & Publisher 📰🤖
+# 🤖 AI-Powered Facebook News Scraper & Publisher 📰
 
-An automated news pipeline using Google Apps Script to scrape articles from RSS feeds, Google Gemini API to clean the content, and Make.com to publish everything as a native photo post to a Facebook Page.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python Version](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![GitHub Actions](https://img.shields.io/badge/Automated%20by-GitHub%20Actions-blue?logo=githubactions)](https://github.com/features/actions)
 
-![Language](https://img.shields.io/badge/Language-Google%20Apps%20Script-yellow?style=for-the-badge)
-![Platform](https://img.shields.io/badge/Platform-Make.com-blue?style=for-the-badge)
-![AI](https://img.shields.io/badge/AI-Google%20Gemini-green?style=for-the-badge)
-![License](https://img.shields.io/github/license/Shawon-Miah/Facebook-Automatic-AI-News-Scrapper---Publisher?style=for-the-badge)
+This is a fully automated content creation and publishing bot. It scrapes news articles from various sources, uses an **AI (GPT-2)** to rewrite the headlines, and then **automatically publishes them to your Facebook Page**.
 
+It's a complete, hands-free pipeline for content management, running for **FREE** on GitHub Actions.
 
----
+## ✨ Key Features
 
-## Overview
+-   🌐 **Multi-Source Scraping:** Pulls news from a customizable list of top websites.
+-   🧠 **AI-Powered Content:** Uses a fine-tuned GPT-2 model via the Hugging Face `transformers` library to generate unique, engaging headlines.
+-   🔄 **Automated Publishing:** Posts the scraped article link along with the new AI-generated headline directly to your Facebook Page.
+-   ⏰ **Scheduled & Automated:** Runs on a schedule using GitHub Actions. Set it and forget it!
+-   🔒 **Secure Credential Handling:** All your sensitive information (passwords, tokens) is managed safely using GitHub Secrets.
 
-This project is the ultimate solution for creating a "no-human-touch" news publishing system. It runs entirely on a schedule, intelligently finds and verifies news articles, uses a powerful AI to clean the content professionally, and posts it to a Facebook Page in a format designed for high engagement.
+##  flowchart
+Here's how it works:
 
-The goal is to move beyond simple link sharing and create rich, native photo posts that include the full article text, which often results in better organic reach on Facebook.
+**Scrape News Websites ➨ Feed to AI Engine (GPT-2) ➨ Post Unique Content to Facebook Page**
 
-## Features
+## 🛠️ Technology Stack
 
--   **Runs on a Schedule:** Set it and forget it. Runs automatically at your chosen interval and within a specific time window (e.g., 9 AM to 9 PM).
--   **Intelligent Scraping:** Doesn't just read the RSS summary; it visits the actual article page to find the best image and the complete article body.
--   **AI-Powered Cleaning:** This is the core of the project. It uses the Google Gemini API to professionally clean messy web content. It removes ads, boilerplate text ("Read More," author bios), HTML junk, and decodes special characters, leaving only the pure, clean article text.
--   **Duplicate Prevention:** Keeps a log of posted article titles in a Google Sheet to ensure the same news is never published twice.
--   **Smart Feed Rotation:** Randomly cycles through your RSS feed list at the start of each run to ensure content variety and avoid getting stuck on a single broken feed.
--   **Real-time Notifications:** Get instant success and error alerts sent to your Discord server via webhooks, so you always know what your system is doing.
--   **Manual Override:** Includes a special function (`forceRunAutomation`) that allows you to trigger a post immediately, ignoring the schedule.
-
-## How It Works
-
-The workflow is a simple, powerful, and cost-effective pipeline:
-
-`[Google Sheet with Feeds]` → `[Time-driven Apps Script]` → `[Scraper finds new article]` → `[Gemini API cleans HTML]` → `[Make.com Webhook receives final data]` → `[Posts Photo to Facebook Page]` → `[Notifies Discord]`
-
-## Prerequisites
-
-To build this yourself, you will need **free accounts** for the following services:
--   A **Google Account** (for Google Sheets and Google Apps Script)
--   A **Make.com Account**
--   A **Facebook Page** you are an admin of
--   A **Discord Server** where you can create a webhook
--   A **Google AI (Gemini) API Key**
+-   **Language:** Python 🐍
+-   **Scraping:** Playwright
+-   **AI / NLP:** Hugging Face Transformers (GPT-2)
+-   **Automation:** GitHub Actions 🚀
+-   **API:** Facebook Graph API
 
 ---
 
-## 🚀 Setup Guide
+## 🚀 The Ultimate Setup Guide
 
-For a complete, step-by-step walkthrough with all the necessary screenshots, please see the **[Detailed Setup Guide](docs/setup_guide.md)**. (We will create this file next).
+Setting up this project involves two major parts. **Part A** is getting all your credentials from Facebook. **Part B** is setting up the GitHub repository to run the bot.
 
-## Configuration
+### **Part A: Facebook & Developer Prerequisites (The Hard Part)**
 
-All settings for the script are managed in the `ControlPanel` tab of your Google Sheet. This allows you to change settings like post frequency or your API key without ever touching the code.
+Before you touch the code, you need four critical things from Facebook. This can be tricky, so follow closely!
 
-You need to set up your Google Sheet with four tabs: `ControlPanel`, `RSS_Feeds`, `Posted_News`, and `Error_Log`.
+1.  **A Facebook Page:** You need a Facebook Page (not your personal profile) where you want to post the news. Create one if you don't have one.
 
-#### `ControlPanel` Structure:
-| Setting Name              | Description                                                  |
-| ------------------------- | ------------------------------------------------------------ |
-| Posting_Frequency_Hours   | *Legacy - not used by current trigger, but can be referenced.* |
-| Max_Posts_Per_Day         | A daily safety limit for how many articles can be published.   |
-| Last_Post_Timestamp       | The script updates this automatically. Leave blank.          |
-| Posts_Today_Count         | The script updates this automatically. Resets daily.         |
-| Discord_Webhook_URL       | The webhook URL for your Discord notifications.              |
-| Facebook_Page_ID          | The ID of your Facebook Page.                                |
-| Make_Webhook_URL          | The URL from your Make.com scenario webhook.                 |
-| Gemini_API_Key            | Your secret API key from Google AI Studio.                   |
+2.  **Your Page ID:**
+    -   Go to your Facebook Page.
+    -   Click on **"About"** and scroll down to **"Page transparency"**.
+    -   You will see your `Page ID`. **Copy this and save it.**
 
-*(Note: The `Posting_Frequency_Hours` is a legacy setting from the original plan. The live schedule is now controlled by the Apps Script trigger.)*
+3.  **A Facebook Developer App & Access Token:**
+    -   Go to [Meta for Developers](https://developers.facebook.com/) and create a Developer Account.
+    -   Click **"My Apps"** > **"Create App"**. Choose **"Business"** as the type.
+    -   Give your app a name.
+    -   From your new app's dashboard, go to **"Tools"** > **"Graph API Explorer"**.
+    -   On the right side, under "Permissions", find and add these two permissions:
+        -   `pages_read_engagement`
+        -   `pages_manage_posts`
+    -   Click **"Generate Access Token"**. Log in and authorize it for your desired page.
+    -   The token it gives you is a *short-lived token*. We need a permanent one!
+    -   Click the little "i" icon next to the token, then **"Open in Access Token Debugger"**.
+    -   In the debugger, click the **"Extend Access Token"** button at the bottom.
+    -   This will give you a **long-lived (60 day) Access Token**. **Copy this and save it.** It's what we will use.
+
+4.  **Your Facebook Login Credentials:**
+    -   The scraper uses Playwright to log into Facebook to read news posts. You will need the **email and password** of a valid Facebook account.
+
+**You should now have these 4 things saved in a notepad:**
+-   `Your Facebook Email`
+-   `Your Facebook Password`
+-   `Your Page ID`
+-   `Your Long-Lived Access Token`
+
+### **Part B: GitHub Repository Setup (The Easy Part)**
+
+Now we will set up the project to use the credentials you just collected.
+
+1.  **Fork this Repository:**
+    -   Click the **"Fork"** button at the top-right of this page to create your own copy.
+
+2.  **Add Your Secrets:**
+    -   In your new forked repository, go to **Settings** > **Secrets and variables** > **Actions**.
+    -   You need to create **FOUR** secrets. Click **New repository secret** for each one:
+        -   **Name:** `FB_EMAIL` -> **Value:** Your Facebook login email.
+        -   **Name:** `FB_PASSWORD` -> **Value:** Your Facebook login password.
+        -   **Name:** `PAGE_ID` -> **Value:** Your Facebook Page ID.
+        -   **Name:** `ACCESS_TOKEN` -> **Value:** Your long-lived Access Token.
+
+3.  **Enable and Run!**
+    -   Go to the **"Actions"** tab of your repository. If prompted, click `I understand my workflows, go ahead and enable them`.
+    -   The bot will now run on its schedule! To trigger it manually, click on **"Run Scraper and Poster"** on the left, then the **"Run workflow"** button.
 
 ---
 
-## The Code
+## ⚠️ Important Disclaimer
 
-The complete and documented Google Apps Script code can be found in `src/main.gs`.
+Automating actions on social media platforms can be against their Terms of Service. This tool is intended for educational purposes. Overuse or misuse could potentially lead to your Facebook account being rate-limited or suspended. Use it responsibly and at your own risk.
 
-### Main Functions
--   **`runAutomation()`**: This is the main function for the automated trigger. It respects the 9 AM - 9 PM time gate and is configured to post only 1 article per run to be safe.
--   **`forceRunAutomation()`**: This is your manual override. It ignores the time gate and will post up to 5 articles in a single run.
+## 🔧 Customization
 
-## License
+You can easily change the news sources. Open the `scraper_and_post.py` file and edit the `NEWS_SOURCES` list at the top of the file.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
